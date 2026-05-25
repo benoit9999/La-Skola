@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="La Skola — Restaurant à Louvain-la-Neuve. Académie des saveurs, carte cosmopolite, événements privés. Grand Place 39.">
+  <meta name="theme-color" content="#00382C">
+  <title>La Skola — Académie des Saveurs | Louvain-la-Neuve</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://laskola.be/wp-content/uploads/2025/02/cropped-TUMBNAIL-SKOLA-32x32.png">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Cursor Glow Effect -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="navbar-logo">
+      <img src="https://laskola.be/wp-content/uploads/2025/02/cropped-Logo-couleur-RVB.png" alt="La Skola Logo">
+    </a>
+    <div class="navbar-links" id="navLinks">
+      <a href="#accueil">Accueil</a>
+      <a href="#menu">La Carte</a>
+      <a href="#lunchs">Lunchs</a>
+      <a href="#plat-phare">Plat Brasserie</a>
+      <a href="#events">Événements</a>
+      <a href="creations.html">Nos Créations</a>
+      <a href="#contact" class="nav-cta">Réserver</a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#accueil">Accueil</a>
+    <a href="#menu">La Carte</a>
+    <a href="#lunchs">Lunchs</a>
+    <a href="#plat-phare">Plat Brasserie</a>
+    <a href="#events">Événements</a>
+    <a href="creations.html">Nos Créations</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="accueil">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="hero-content">
+      <p class="hero-badge">Grand Place 39 • Louvain-la-Neuve</p>
+      <h1 class="hero-title">L'Académie<br>des <em>Saveurs</em></h1>
+      <p class="hero-desc">
+        Bienvenue à La Skola, où une carte cosmopolite célèbre les plaisirs de la table, sans frontières ni limites.
+      </p>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn btn-primary">Découvrir la Carte</a>
+        <a href="#about" class="btn btn-outline">Notre Histoire</a>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about" id="about" data-theme="light">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image-wrapper reveal-left">
+          <div class="about-image">
+            <img src="img/image2.jpg" alt="Intérieur chaleureux de La Skola">
+          </div>
+          <div class="about-image-accent"></div>
+        </div>
+        <div class="about-content reveal-right">
+          <span class="section-subtitle">Bienvenue chez nous</span>
+          <h2 class="section-title">Amazing Food<br>& <em>Drinks</em></h2>
+          <div class="ornament-line"></div>
+          <p class="section-text">
+            La Skola est la nouvelle adresse incontournable à Louvain-la-Neuve. Plus qu'un simple restaurant, c'est un
+            véritable lieu de rencontre où l'excellence et la gourmandise sont au cœur de chaque expérience.
+          </p>
+          <p class="section-text" style="margin-top: 1rem;">
+            Bienvenue dans notre académie des saveurs, où une carte cosmopolite célèbre les plaisirs de la table, sans
+            frontières ni limites. Ici, la gourmandise règne en maître.
+          </p>
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">🍽️</div>
+              <span>Carte cosmopolite & plats du monde</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">🧀</div>
+              <span>Raclettes & croques signatures</span>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">🎉</div>
+              <span>Salle événementielle privatisable</span>
+            </div>
+          </div>
+          <a href="#menu" class="btn btn-dark">Voir la Carte <i class="fas fa-arrow-right"
+              style="font-size:0.7rem"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MENU CARD SECTION ========== -->
+  <section class="menu-section" id="menu" data-theme="dark">
+    <div class="container">
+      <span class="section-subtitle reveal">nos cartes</span>
+      <h2 class="section-title reveal" style="color:#fff;">Découvrez notre <em>Carte</em></h2>
+      <p class="section-text reveal">
+        Pour les amoureux de la bonne cuisine, notre carte propose des spécialités et plats revisités avec créativité.
+        Cliquez pour explorer.
+      </p>
+      <div class="menu-cards-grid">
+        <!-- Card 1: La Carte -->
+        <div class="menu-card reveal-scale" data-menu="la-carte">
+          <div class="menu-card-inner">
+            <img src="img/cartes-plats.png" alt="La Carte de La Skola">
+            <div class="menu-card-overlay">
+              <h3 class="menu-card-label">La Carte</h3>
+              <span class="menu-card-hint">Cliquez pour ouvrir <span class="arrow">→</span></span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2: Carte des vins -->
+        <div class="menu-card reveal-scale" data-menu="vins">
+          <div class="menu-card-inner">
+            <img src="img/cartes-vins.png" alt="Carte des Vins">
+            <div class="menu-card-overlay">
+              <h3 class="menu-card-label">Carte des Vins</h3>
+              <span class="menu-card-hint">Cliquez pour ouvrir <span class="arrow">→</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Modal -->
+  <div class="menu-modal" id="menuModal">
+    <div class="menu-modal-backdrop" id="menuModalBackdrop"></div>
+    <div class="menu-modal-content">
+      <button class="menu-modal-close" id="menuModalClose">✕</button>
+      <div class="menu-modal-pages" id="menuModalPages">
+        <!-- Pages injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== LUNCHS ========== -->
+  <section class="lunchs" id="lunchs" data-theme="light">
+    <div class="container">
+      <div class="lunchs-header reveal">
+        <span class="section-subtitle">du lundi au vendredi</span>
+        <h2 class="section-title">Plats du <em>Jour</em></h2>
+        <div class="lunchs-price">13.50€</div>
+        <p class="lunchs-period">Du lundi au vendredi • 12h — 16h</p>
+      </div>
+      <div class="lunchs-grid">
+        <div class="lunch-card reveal">
+          <div class="lunch-day">Lundi</div>
+          <div class="lunch-dish">Steak "Irish Beef"</div>
+          <div class="lunch-desc">Sauce au poivre vert, frites et salade</div>
+        </div>
+        <div class="lunch-card reveal">
+          <div class="lunch-day">Mardi</div>
+          <div class="lunch-dish">Pâtes Alfredo au Postel</div>
+          <div class="lunch-desc">Petits pois, poulet, citron et aneth</div>
+        </div>
+        <div class="lunch-card reveal">
+          <div class="lunch-day">Mercredi</div>
+          <div class="lunch-dish">Porc Laqué Croustillant</div>
+          <div class="lunch-desc">Mariné sauce soja, sésame et salade de chicons</div>
+        </div>
+        <div class="lunch-card reveal">
+          <div class="lunch-day">Jeudi</div>
+          <div class="lunch-dish">Ragoût d'Aubergine</div>
+          <div class="lunch-desc">Viande de bœuf hachée, ail, épices et riz basmati</div>
+        </div>
+        <div class="lunch-card reveal">
+          <div class="lunch-day">Vendredi</div>
+          <div class="lunch-dish">Casserole de Poisson Blanc</div>
+          <div class="lunch-desc">Carottes, haricots verts, brocolis et pommes de terre</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PLAT PHARE ========== -->
+  <section class="raclette" id="plat-phare" data-theme="green">
+    <div class="container">
+      <div class="raclette-grid">
+        <div class="raclette-image reveal-left">
+          <img src="img/food/plat11.png" alt="Le Plat Brasserie La Skola">
+        </div>
+        <div class="raclette-content reveal-right">
+          <span class="section-subtitle">notre plat phare</span>
+          <h2 class="section-title" style="color:#fff;">Le Plat <em>Brasserie</em></h2>
+          <div class="ornament-line ornament-line--light"></div>
+          <p class="section-text" style="color:rgba(255,255,255,0.8);">
+            Découvrez notre plat le plus gourmand, une véritable expérience brasserie complète ! Une savoureuse brochette grillée à la perfection, accompagnée de frites croustillantes et de sa salade fraîcheur. Un équilibre parfait pour les vrais gourmands.
+          </p>
+          <a href="#contact" class="btn btn-primary" style="margin-top: 2rem;">Réserver une Table <i
+              class="fas fa-arrow-right" style="font-size:0.7rem"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EVENTS ========== -->
+  <section class="events" id="events" data-theme="light">
+    <div class="container">
+      <div class="events-layout">
+        <div class="events-images reveal-left">
+          <div class="events-image-grid">
+            <div class="img-wrapper">
+              <img src="img/events.png" alt="Événement La Skola">
+            </div>
+            <div class="img-wrapper">
+              <img src="img/event.jpeg" alt="Salle La Skola">
+            </div>
+            <div class="img-wrapper">
+              <img src="img/food/plat12.png" alt="Cuisine La Skola">
+            </div>
+          </div>
+        </div>
+        <div class="events-content reveal-right">
+          <span class="section-subtitle">jusqu'à 37 personnes</span>
+          <h2 class="section-title">Événements <em>chez nous</em></h2>
+          <p class="section-text">
+            Vous cherchez un lieu unique à Louvain-la-Neuve pour vos événements ? La Skola met à votre disposition une
+            salle événementielle entièrement privatisable, pensée pour s'adapter à toutes vos envies.
+          </p>
+          <ul class="events-list">
+            <li>Un anniversaire</li>
+            <li>Une réunion de travail ou un team building</li>
+            <li>Un after-work</li>
+            <li>Plateaux de fromages et charcuteries</li>
+            <li>Brunch, lunch, goûter ou dîner</li>
+          </ul>
+          <a href="#contact" class="btn btn-dark">Parlez-nous de vos projets <i class="fas fa-arrow-right"
+              style="font-size:0.7rem"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== RESERVATION / CONTACT ========== -->
+  <section class="booking-section" id="contact" data-theme="dark">
+    <div class="container">
+      <div class="booking-layout">
+        <div class="booking-info reveal-left">
+          <span class="section-subtitle">À votre écoute</span>
+          <h2 class="section-title" style="color:#fff;">Réserver une <em>Table</em></h2>
+          <div class="ornament-line ornament-line--light"></div>
+          <p class="section-text" style="color:rgba(255,255,255,0.8);">
+            Que ce soit pour un dîner, un repas d'affaires ou l'organisation d'un événement, notre équipe est à votre disposition pour préparer au mieux votre venue.
+          </p>
+          <div class="booking-contact-details" style="margin-top: 2rem;">
+            <p><i class="fas fa-phone" style="color: var(--color-gold); margin-right: 10px;"></i> 010.22.78.68</p>
+            <p><i class="fas fa-envelope" style="color: var(--color-gold); margin-right: 10px;"></i> info@laskola.be</p>
+            <p><i class="fas fa-map-marker-alt" style="color: var(--color-gold); margin-right: 10px;"></i> Grand Place 39, 1348 Louvain-la-Neuve</p>
+          </div>
+        </div>
+        <div class="booking-form-wrapper reveal-right">
+          <form class="booking-form" action="javascript:void(0)" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <input type="text" id="prenom" name="prenom" placeholder="Prénom" required>
+              </div>
+              <div class="form-group">
+                <input type="text" id="nom" name="nom" placeholder="Nom" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="tel" id="telephone" name="telephone" placeholder="Téléphone" required>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <select id="sujet" name="sujet" required>
+                  <option value="" disabled selected>Sujet de la demande</option>
+                  <option value="reservation">Réservation de table</option>
+                  <option value="evenement">Événement privé / Projet</option>
+                  <option value="autre">Autre question</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <input type="number" id="convives" name="convives" placeholder="Nombre de convives" min="1" max="100">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <input type="date" id="date" name="date">
+              </div>
+              <div class="form-group">
+                <input type="time" id="heure" name="heure">
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" rows="3" placeholder="Votre message ou demande spéciale..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold w-100" style="width: 100%; border: none; cursor: pointer;">Envoyer la demande</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://laskola.be/wp-content/uploads/2025/02/cropped-Logo-couleur-RVB.png" alt="La Skola">
+          <p>L'académie des saveurs à Louvain-la-Neuve. Une carte cosmopolite qui célèbre les plaisirs de la table.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Navigation</h4>
+          <div class="footer-links">
+            <a href="#accueil">Accueil</a>
+            <a href="#about">Le Restaurant</a>
+            <a href="#menu">La Carte</a>
+            <a href="#lunchs">Plats du Jour</a>
+            <a href="#events">Événements</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Horaires</h4>
+          <div class="footer-links">
+            <a href="javascript:void(0)">Lun — Ven: 12h — 22h</a>
+            <a href="javascript:void(0)">Samedi: 18h — 23h</a>
+            <a href="javascript:void(0)">Dimanche: Fermé</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-contact">
+            <p><a href="tel:010227868"><i class="fas fa-phone"></i> 010.22.78.68</a></p>
+            <p><a href="mailto:info@laskola.be"><i class="fas fa-envelope"></i> info@laskola.be</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> Grand Place 39, 1348 LLN</p>
+          </div>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/profile.php?id=61573690755378" target="_blank" aria-label="Facebook"><i
+                class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/la_skola/" target="_blank" aria-label="Instagram"><i
+                class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@LASKOLA-LLN" target="_blank" aria-label="YouTube"><i
+                class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@la.skola" target="_blank" aria-label="TikTok"><i
+                class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 La Skola — Tous droits réservés. Développé avec ❤️ par Neodastes.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
