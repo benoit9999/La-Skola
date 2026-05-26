@@ -133,14 +133,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Map card data-menu to arrays of images (multi-page)
   const menuImages = {
     'la-carte': [
-      'la_skola_menu_v7.png',
-      'la_skola_menu_entrees.png',
-      'la_skola_menu_plats.png',
-      'la_skola_menu_desserts.png'
+      'la_skola_menu_v7.webp',
+      'la_skola_menu_entrees.webp',
+      'la_skola_menu_plats.webp',
+      'la_skola_menu_desserts.webp'
     ],
     'vins': [
-      'la_skola_menu_beige_brown.png',
-      'la_skola_vins_page.png'
+      'la_skola_menu_beige_brown.webp',
+      'la_skola_vins_page.webp'
     ]
   };
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   menuCards.forEach(card => {
     card.addEventListener('click', () => {
       const menuType = card.dataset.menu;
-      const images = menuImages[menuType] || ['la_skola_menu_v7.png'];
+      const images = menuImages[menuType] || ['la_skola_menu_v7.webp'];
       // Clear previous pages
       if (menuModalPages) {
         menuModalPages.innerHTML = '';

@@ -81,7 +81,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--color-green);
 }
 
-/* CSS Ornament Line (replaces broken ornament.png) */
+/* CSS Ornament Line (replaces broken ornament.webp) */
 .ornament-line {
   width: 80px;
   height: 1px;
