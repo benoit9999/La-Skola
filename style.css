@@ -209,10 +209,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .navbar-logo img {
   height: 100px;
   width: auto;
-  transition: height 0.4s ease;
-}
-.navbar.scrolled .navbar-logo img {
-  height: 75px;
 }
 .navbar-links {
   display: flex;
