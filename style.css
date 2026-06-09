@@ -23,6 +23,10 @@
   --font-body: 'Manrope', 'Helvetica Neue', sans-serif;
   --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --transition-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Transition & Divider Variables */
+  --color-primary-dim: rgba(184, 140, 61, 0.45);  /* Rich gold with 45% opacity for solid visibility */
+  --color-accent: #B88C3D;                        /* Deep, warm, saturated gold (high contrast on light/dark) */
 }
 
 /* --- Reset & Base --- */
@@ -160,14 +164,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   left: 0;
   width: 100%;
   z-index: 1000;
-  padding: 1.5rem 3rem;
+  padding: 0.5rem 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: background 0.8s ease, padding 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
 }
 .navbar.scrolled {
-  padding: 0.8rem 3rem;
+  padding: 0.2rem 3rem;
   box-shadow: 0 2px 30px rgba(0,0,0,0.08);
   backdrop-filter: blur(12px);
 }
@@ -198,12 +202,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .navbar.scrolled.theme-green .navbar-links a { color: rgba(255,255,255,0.85); }
 .navbar.scrolled.theme-green .hamburger span { background: var(--color-white); }
+.navbar-logo {
+  display: flex;
+  align-items: center;
+}
 .navbar-logo img {
-  height: 55px;
+  height: 100px;
+  width: auto;
   transition: height 0.4s ease;
 }
 .navbar.scrolled .navbar-logo img {
-  height: 42px;
+  height: 75px;
 }
 .navbar-links {
   display: flex;
@@ -472,6 +481,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--color-gold);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(201,169,110,0.3);
+}
+
+/* --- SECTION DIVIDERS & TRANSITIONS --- */
+/* Type 1: LA LIGNE DE TRANSITION COMPLÈTE */
+.transition-line {
+  display: block;
+  width: 100%;
+  height: 3px; /* Solid 3px height for clear visibility */
+  background: linear-gradient(90deg, transparent, #004b3a 15%, #b5893d 40%, #e8c374 50%, #b5893d 60%, #004b3a 85%, transparent);
+  margin: 0;
+  position: relative;
+  z-index: 10;
 }
 
 /* --- ABOUT SECTION --- */
@@ -944,10 +965,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: 3rem;
   margin-bottom: 3rem;
 }
+.footer-brand { max-width: 300px; }
 .footer-brand img {
-  height: 50px;
+  height: 90px;
   margin-bottom: 1.5rem;
-  filter: brightness(0) invert(1);
+  object-fit: contain;
 }
 .footer-brand p {
   font-size: 0.9rem;
