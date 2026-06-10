@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuData = {
     'la-carte': {
       title: 'LA SKOLA',
-      subtitle: "Carte d'Hiver",
+      subtitle: "La Carte",
       sections: [
         {
           name: 'À se partager / Entrées',
