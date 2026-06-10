@@ -134,29 +134,69 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuModalBackdrop = document.getElementById('menuModalBackdrop');
   const menuModalPages = document.getElementById('menuModalPages');
 
-  // Menu Content JSON (actual menu from Gillian-Menu-MA-2.pdf and wine menu)
+  // Menu Content JSON (actual menu from the new cards)
   const menuData = {
     'la-carte': {
       title: 'LA SKOLA',
       subtitle: "Carte d'Hiver",
       sections: [
         {
-          name: 'Entrées',
+          name: 'À se partager / Entrées',
           items: [
             {
-              name: 'Croquettes de crevettes grises',
-              description: 'De la Mer du Nord, sur un lit de salade et une mayonnaise au piment d\'Espelette.',
-              price: '13,5€'
+              name: 'Duo de Croquettes aux crevettes',
+              description: '2 pièces. (En version plat : 3 pièces pour 17,50€)',
+              price: '13,50€'
             },
             {
-              name: 'Tartines rustiques',
-              description: 'À la terrine de gibier de faisan. Pain noix croustillant frotté à l’ail, confit de chutney (groseilles, airelles, cassis) sur une salade.',
-              price: '13,5€'
+              name: 'Croquettes aux fromages',
+              description: '2 pièces. (En version plat : 3 pièces, salade et frites pour 16,50€)',
+              price: '13,50€'
             },
             {
-              name: 'Croustillant de Boudin Noir',
-              description: 'Boudin noir déstructuré et enroulé dans une feuille de brick croustillante, accompagné d\'une compotée de pommes "Boskoop" au beurre et d\'une réduction de cidre belge artisanal.',
-              price: '13,5€'
+              name: 'Calamars frits',
+              description: '4 pièces, accompagnés de sauce tartare.',
+              price: '6,50€'
+            },
+            {
+              name: 'Scampis frits',
+              description: '4 pièces, accompagnés de sauce tartare.',
+              price: '6,50€'
+            },
+            {
+              name: 'Samosa aux légumes',
+              description: '2 pièces, accompagnés de sauce chili douce.',
+              price: '7,50€'
+            },
+            {
+              name: 'Caviar d\'aubergine',
+              description: 'Accompagné de crudités et de tranches de pain grillé.',
+              price: '6,50€'
+            },
+            {
+              name: 'Houmous maison',
+              description: 'Accompagné de crudités et de tranches de pain grillé.',
+              price: '6,50€'
+            },
+            {
+              name: 'Tapenade d\'olives noires et de chèvre',
+              description: 'Accompagné de crudités et de tranches de pain grillé.',
+              price: '6,50€'
+            },
+            {
+              name: 'Guacamole avocat/tomate',
+              description: 'Accompagné de crudités et de tranches de pain grillé.',
+              price: '6,50€'
+            },
+            {
+              name: 'Caviar de betterave',
+              description: 'Accompagné de crudités et de tranches de pain grillé.',
+              price: '6,50€'
+            },
+            {
+              name: 'Plateau de tous nos dips',
+              description: 'Idéal à partager (pour 2 personnes).',
+              price: '35,00€'
             }
           ]
         },
@@ -164,59 +204,124 @@ document.addEventListener('DOMContentLoaded', () => {
           name: 'Salades',
           items: [
             {
-              name: 'Salade de Chèvre Chaud',
-              description: 'Mélange de mesclun frais accompagné de pommes croquantes et de noix. Le fromage de chèvre chaud apporte une touche fondante, relevée par un filet de miel et de fruits secs pour une note sucrée-salée.',
-              price: '16,5€'
+              name: 'Salade croustillante de chèvre chaud',
+              description: 'Salade mixte, tomate, pommes, raisins secs, noix croquantes et coulis de miel chaud à la fleur d\'oranger.',
+              price: '16,00€'
             },
             {
-              name: 'Salade Thaï',
-              description: 'De poulet ou de bœuf, composée de légumes croquants et colorés, vermicelles de riz, menthe et coriandre fraîche. Le choix entre poulet ou bœuf permet d’adapter le plat selon vos envies.',
-              price: '17,5€'
+              name: 'Salade de Burrata',
+              description: 'Tomates, roquette, betteraves, avocat, patates douces, grenade, burrata à l\'huile de basilic parfumée.',
+              price: '17,50€'
+            },
+            {
+              name: 'Salade César au Poulet',
+              description: 'Lanières de poulet, tomates, salade sucrine, œuf, anchois, sauce César, croûtons et parmesan.',
+              price: '16,00€'
+            },
+            {
+              name: 'Salade César aux Scampis',
+              description: 'Salade, tomates, œuf, sauce César, anchois, croûtons et parmesan.',
+              price: '16,50€'
+            },
+            {
+              name: 'Salade Thaï au Poulet ou Bœuf',
+              description: 'Salade sucrine, vermicelles de riz, menthe, coriandre, carottes, céleri, grenade, croquants.',
+              price: '17,00€'
             }
           ]
         },
         {
-          name: 'Plats Principaux',
+          name: 'Pâtes',
           items: [
             {
-              name: 'Tartare de Bœuf à l\'Américaine',
-              description: 'Recette revisitée. Bœuf belge haché au couteau, assaisonné minute, présenté avec des cornichons et câpres confits, un jaune d\'œuf de caille basse température, chips de pain noir et frites.',
-              price: '16,5€'
+              name: 'Pâtes fraîches à l\'encre de seiche',
+              description: 'Tomates cerises, basilic, ail, huile d\'olive, vin blanc.',
+              price: '13,50€'
             },
             {
-              name: 'Carbonnade Laquée',
-              description: 'Joue de bœuf belge braisée lentement à la bière brune, laquée au jus de cuisson réduit, servie avec une purée de pommes de terre Bintje à la truffe noire et petits légumes glacés.',
-              price: '20,5€'
+              name: 'Spaghetti Burrata & Tomates',
+              description: 'Burrata et crème de tomates ou au pesto et à l\'huile d\'olive au basilic, tomates cerises.',
+              price: '18,50€'
             },
             {
-              name: 'Waterzooi de la Mer',
-              description: 'Filet de poisson local (cabillaud, sole) et petites crevettes roses dans un bouillon crémeux de légumes (carottes, poireaux, céleri) transformé en une écume légère et parfumée.',
-              price: '25,5€'
+              name: 'Pâtes aux Scampis',
+              description: 'Pâtes fraîches à l\'encre de seiche. Une saveur marine avec du beurre à l\'ail, pesto et persil.',
+              price: '19,50€'
             },
             {
-              name: 'Suprême de Coucou de Malines',
-              description: 'Suprême de poulet de Malines cuit parfaitement, accompagné d\'un stoemp de saison de chicons caramélisés et d\'une réduction de jus de volaille au sirop de Liège (goût sucré-salé).',
-              price: '21,5€'
-            },
-            {
-              name: 'Chicons & Jambon d\'Ardenne',
-              description: 'Endives braisées délicatement servies avec une chips de jambon d\'Ardenne ultra-croustillante et une sauce Mornay au fromage belge (type Chimay) revisitée, plus légère.',
-              price: '19,5€'
-            },
-            {
-              name: 'Boulettes "Façon Grand-Mère"',
-              description: 'Grosses boulettes de bœuf et porc hachés, poêlées, servies avec une sauce tomate maison revisitée avec des tomates confites et basilic frais, accompagnées de pâtes fraîches "al dente".',
-              price: '20,5€'
-            },
-            {
-              name: 'Duo de Boudin Noir & Blanc',
-              description: 'Tranches de boudin noir et blanc poêlées, servies avec une demi-pomme rôtie et caramélisée, accompagnées d\'une onctueuse sauce d’oignons caramélisés pour un équilibre parfait entre le sucré et le salé.',
-              price: '20,5€'
+              name: 'Pâtes au Saumon',
+              description: 'Tagliatelles, sauce crémeuse, épinards, aneth, persil frais, parmesan râpé.',
+              price: '20,50€'
             },
             {
               name: 'Spaghetti Bolognaise',
-              description: 'Un grand classique de la cuisine italienne : des spaghetti al dente nappés d’une sauce riche et savoureuse à base de bœuf de bœuf mijoté, tomates, oignons et herbes aromatiques.',
-              price: '13,5€'
+              description: 'Un grand classique cuisiné selon la recette traditionnelle.',
+              price: '15,00€'
+            }
+          ]
+        },
+        {
+          name: 'Poissons',
+          items: [
+            {
+              name: 'Carpaccio de Saumon',
+              description: 'Avocat, mangue et sauce au kiwi.',
+              price: '18,50€'
+            },
+            {
+              name: 'Filet de saumon poêlé',
+              description: 'Sauce au beurre et à la ciboulette, tombés d\'épinards et pommes de terre rôties au four.',
+              price: '23,50€'
+            },
+            {
+              name: 'Encornets farcis à la Méditerranéenne',
+              description: 'Calamars farcis au riz dans une délicieuse sauce tomate relevée.',
+              price: '20,50€'
+            }
+          ]
+        },
+        {
+          name: 'Plats',
+          items: [
+            {
+              name: 'Tartare de Bœuf à l\'Américaine',
+              description: 'Recette revisitée. Bœuf belge haché au couteau, assaisonné minute, présenté avec cornichons, câpres, œuf de caille, chips de pain noir, frites et salade.',
+              price: '16,50€'
+            },
+            {
+              name: 'Bœuf Argentin (250g)',
+              description: 'Sauce poivre vert ou roquefort, servi avec salade et panier de frites.',
+              price: '23,50€'
+            },
+            {
+              name: 'Carbonnade Laquée et sa purée truffée',
+              description: 'Joue de bœuf belge braisée lentement à la bière brune, servie avec une purée de pommes de terre à la truffe noire.',
+              price: '20,50€'
+            },
+            {
+              name: 'Suprême de Coucou de Malines au sirop de Liège',
+              description: 'Purée de pommes de terre, chicons caramélisés et réduction de jus de volaille au sirop de Liège.',
+              price: '21,50€'
+            },
+            {
+              name: 'Boulettes "Façon Grand-Mère"',
+              description: 'Servies avec pâtes fraîches ou frites, nappées de sauce tomate maison.',
+              price: '19,50€'
+            },
+            {
+              name: 'Chicons & Jambon d\'Ardenne',
+              description: 'Endives braisées délicatement, sauce Mornay au fromage belge (type Chimay) revisitée, plus légère.',
+              price: '18,50€'
+            },
+            {
+              name: 'Hamburger d\'agneau',
+              description: 'Fromage de chèvre, sauce tzatziki à l\'ail, tomates, salade et frites.',
+              price: '22,50€'
+            },
+            {
+              name: 'Pour les Loulous (Menu enfant)',
+              description: 'Steak, boulette ou poulet | Purée ou frites | Ketchup | Compote et dessert.',
+              price: '12,00€'
             }
           ]
         },
@@ -224,109 +329,79 @@ document.addEventListener('DOMContentLoaded', () => {
           name: 'Desserts',
           items: [
             {
-              name: 'Trio de Crèmes Brûlées',
-              description: 'Vanille, chocolat et pistache.',
-              price: '8,5€'
+              name: 'Tiramisu Italien',
+              description: 'Boudoirs, café, Amaretto.',
+              price: '9,50€'
             },
             {
-              name: 'Tiramisu',
-              description: 'Une version revisitée du tiramisu classique, remplaçant les boudoirs par un gâteau au chocolat sans gluten trempés dans le Cointreau et du café, avec une crème mascarpone onctueuse.',
-              price: '9,5€'
+              name: 'Cheesecake au citron',
+              description: 'Cream cheese Philadelphia. Un délicieux cheesecake, moelleux.',
+              price: '8,00€'
             },
             {
-              name: 'Profiteroles Traditionnelles',
-              description: 'À la vanille Bourbon, servies avec une sauce au chocolat chaud.',
-              price: '9,5€'
+              name: 'Moelleux au chocolat',
+              description: 'Accompagné de sa boule de glace caramel beurre salé.',
+              price: '9,00€'
             },
             {
-              name: 'Coup Belle-Hélène',
-              description: 'Glace vanille, poires et chocolat chaud.',
-              price: '9,5€'
+              name: 'Mousse au chocolat noir',
+              description: 'Servie avec crème fraîche.',
+              price: '8,50€'
             },
             {
               name: 'Dame Blanche',
               description: 'Glace vanille, crème fraîche et chocolat chaud.',
-              price: '8,5€'
+              price: '8,50€'
             },
             {
               name: 'Dame Noire',
               description: 'Glace chocolat, crème fraîche et chocolat chaud.',
-              price: '8,5€'
+              price: '8,50€'
             }
           ]
         },
         {
-          name: 'Crêpes Maison',
+          name: 'Crêpes & Gaufres',
           items: [
             {
-              name: 'Crêpes Nature',
-              description: 'Saupoudrées de sucre.',
-              price: '5,5€'
+              name: 'Crêpe Nature au sucre',
+              description: 'Servie chaude. Uniquement entre 9h-12h et 15h-18h.',
+              price: '5,50€'
             },
             {
-              name: 'Crêpes du Chocolatier',
-              description: 'Chocolat chaud et chantilly.',
-              price: '6,5€'
+              name: 'Crêpe au chocolat',
+              description: 'Nappée de chocolat. Uniquement entre 9h-12h et 15h-18h.',
+              price: '5,50€'
             },
             {
-              name: 'Crêpes du Glacier',
-              description: 'Glace vanille, chocolat chaud et chantilly.',
-              price: '8,5€'
+              name: 'Crêpe Mikado',
+              description: 'Glace à la vanille et sauce au chocolat. Uniquement entre 9h-12h et 15h-18h.',
+              price: '8,50€'
             },
             {
-              name: 'Crêpes Bell-Hélène',
-              description: 'Poires chaudes, glace vanille, chocolat chaud et chantilly.',
-              price: '9,5€'
-            }
-          ]
-        },
-        {
-          name: 'Gaufres de Liège',
-          items: [
-            {
-              name: 'Gaufre au Sucre',
-              description: 'Gaufre caramélisée.',
-              price: '5€'
+              name: 'Gaufre au sucre',
+              description: 'Gaufre de Liège caramélisée.',
+              price: '5,00€'
             },
             {
               name: 'Gaufre Crème Fraîche',
-              description: 'Servie chaude avec chantilly.',
-              price: '5,5€'
+              description: 'Servie avec de la chantilly fraîche.',
+              price: '5,50€'
             },
             {
-              name: 'Gaufre au Chocolat',
+              name: 'Gaufre au chocolat',
               description: 'Crème fraîche et chocolat chaud.',
-              price: '6,5€'
+              price: '6,50€'
             },
             {
-              name: 'Gaufre au Glacier',
-              description: 'Glace vanille, crème fraîche et chocolat chaud.',
-              price: '8,5€'
-            }
-          ]
-        },
-        {
-          name: 'Glaces, Sorbets & Formules',
-          items: [
-            {
-              name: 'Sélection de Glaces & Sorbets',
-              description: 'Glace : Vanille, chocolat, moka, pistache, caramel beurre salé. Sorbet : Cassis, fraise, mangue, citron vert.',
-              price: '2€ / boule'
+              name: 'Gaufre Mikado',
+              description: 'Glace à la vanille et sauce au chocolat.',
+              price: '8,50€'
             },
             {
-              name: 'Plat du Jour (Midi)',
-              description: 'Découvrez notre plat du jour, disponible du lundi au vendredi, de midi à 18h.',
-              price: '13,5€'
-            },
-            {
-              name: 'Menu Enfant',
-              description: 'Au choix : Crispy Chicken & Frites, Fish & Chips ou Spaghetti Bolognaise.',
-              price: '8,5€'
-            },
-            {
-              name: 'Menu de Noël Gourmand',
-              description: 'Saisonnier. Autour de la fondue suisse et de la raclette.',
-              price: 'Sur Demande'
+              name: 'Sélection de Glaces / Sorbets',
+              description: 'Glaces : Vanille, chocolat, fraises, moka, pistache, caramel. Sorbets : Cassis, mangue, citron vert. (Boule au choix : 2,50€)',
+              price: '2,50€ / boule'
             }
           ]
         }
