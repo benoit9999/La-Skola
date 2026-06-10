@@ -81,14 +81,18 @@ document.addEventListener('DOMContentLoaded', () => {
   // ===== 6. SCROLL REVEAL ANIMATIONS =====
   const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
   const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         // Stagger siblings
         const siblings = entry.target.parentElement?.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
         let delay = 0;
         if (siblings) {
           const idx = Array.from(siblings).indexOf(entry.target);
-          delay = idx * 100;
+          // If there are many siblings (e.g. gallery), stagger using a smaller step and modulo 
+          // to avoid accumulating huge delays. Otherwise stagger by 60ms.
+          const step = siblings.length > 5 ? 50 : 60;
+          const group = siblings.length > 5 ? 3 : siblings.length;
+          delay = (idx % group) * step;
         }
         setTimeout(() => {
           entry.target.classList.add('visible');
@@ -96,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -10px 0px' });
 
   revealElements.forEach(el => revealObserver.observe(el));
 
@@ -126,40 +130,347 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== 8. MENU MODAL =====
   const menuModal = document.getElementById('menuModal');
-  const menuModalImg = document.getElementById('menuModalImg');
   const menuModalClose = document.getElementById('menuModalClose');
   const menuModalBackdrop = document.getElementById('menuModalBackdrop');
+  const menuModalPages = document.getElementById('menuModalPages');
 
-  // Map card data-menu to arrays of images (multi-page)
-  const menuImages = {
-    'la-carte': [
-      'la_skola_menu_v7.webp',
-      'la_skola_menu_entrees.webp',
-      'la_skola_menu_plats.webp',
-      'la_skola_menu_desserts.webp'
-    ],
-    'vins': [
-      'la_skola_menu_beige_brown.webp',
-      'la_skola_vins_page.webp'
-    ]
+  // Menu Content JSON (actual menu from Gillian-Menu-MA-2.pdf and wine menu)
+  const menuData = {
+    'la-carte': {
+      title: 'LA SKOLA',
+      subtitle: "Carte d'Hiver",
+      sections: [
+        {
+          name: 'Entrées',
+          items: [
+            {
+              name: 'Croquettes de crevettes grises',
+              description: 'De la Mer du Nord, sur un lit de salade et une mayonnaise au piment d\'Espelette.',
+              price: '13,5€'
+            },
+            {
+              name: 'Tartines rustiques',
+              description: 'À la terrine de gibier de faisan. Pain noix croustillant frotté à l’ail, confit de chutney (groseilles, airelles, cassis) sur une salade.',
+              price: '13,5€'
+            },
+            {
+              name: 'Croustillant de Boudin Noir',
+              description: 'Boudin noir déstructuré et enroulé dans une feuille de brick croustillante, accompagné d\'une compotée de pommes "Boskoop" au beurre et d\'une réduction de cidre belge artisanal.',
+              price: '13,5€'
+            }
+          ]
+        },
+        {
+          name: 'Salades',
+          items: [
+            {
+              name: 'Salade de Chèvre Chaud',
+              description: 'Mélange de mesclun frais accompagné de pommes croquantes et de noix. Le fromage de chèvre chaud apporte une touche fondante, relevée par un filet de miel et de fruits secs pour une note sucrée-salée.',
+              price: '16,5€'
+            },
+            {
+              name: 'Salade Thaï',
+              description: 'De poulet ou de bœuf, composée de légumes croquants et colorés, vermicelles de riz, menthe et coriandre fraîche. Le choix entre poulet ou bœuf permet d’adapter le plat selon vos envies.',
+              price: '17,5€'
+            }
+          ]
+        },
+        {
+          name: 'Plats Principaux',
+          items: [
+            {
+              name: 'Tartare de Bœuf à l\'Américaine',
+              description: 'Recette revisitée. Bœuf belge haché au couteau, assaisonné minute, présenté avec des cornichons et câpres confits, un jaune d\'œuf de caille basse température, chips de pain noir et frites.',
+              price: '16,5€'
+            },
+            {
+              name: 'Carbonnade Laquée',
+              description: 'Joue de bœuf belge braisée lentement à la bière brune, laquée au jus de cuisson réduit, servie avec une purée de pommes de terre Bintje à la truffe noire et petits légumes glacés.',
+              price: '20,5€'
+            },
+            {
+              name: 'Waterzooi de la Mer',
+              description: 'Filet de poisson local (cabillaud, sole) et petites crevettes roses dans un bouillon crémeux de légumes (carottes, poireaux, céleri) transformé en une écume légère et parfumée.',
+              price: '25,5€'
+            },
+            {
+              name: 'Suprême de Coucou de Malines',
+              description: 'Suprême de poulet de Malines cuit parfaitement, accompagné d\'un stoemp de saison de chicons caramélisés et d\'une réduction de jus de volaille au sirop de Liège (goût sucré-salé).',
+              price: '21,5€'
+            },
+            {
+              name: 'Chicons & Jambon d\'Ardenne',
+              description: 'Endives braisées délicatement servies avec une chips de jambon d\'Ardenne ultra-croustillante et une sauce Mornay au fromage belge (type Chimay) revisitée, plus légère.',
+              price: '19,5€'
+            },
+            {
+              name: 'Boulettes "Façon Grand-Mère"',
+              description: 'Grosses boulettes de bœuf et porc hachés, poêlées, servies avec une sauce tomate maison revisitée avec des tomates confites et basilic frais, accompagnées de pâtes fraîches "al dente".',
+              price: '20,5€'
+            },
+            {
+              name: 'Duo de Boudin Noir & Blanc',
+              description: 'Tranches de boudin noir et blanc poêlées, servies avec une demi-pomme rôtie et caramélisée, accompagnées d\'une onctueuse sauce d’oignons caramélisés pour un équilibre parfait entre le sucré et le salé.',
+              price: '20,5€'
+            },
+            {
+              name: 'Spaghetti Bolognaise',
+              description: 'Un grand classique de la cuisine italienne : des spaghetti al dente nappés d’une sauce riche et savoureuse à base de bœuf de bœuf mijoté, tomates, oignons et herbes aromatiques.',
+              price: '13,5€'
+            }
+          ]
+        },
+        {
+          name: 'Desserts',
+          items: [
+            {
+              name: 'Trio de Crèmes Brûlées',
+              description: 'Vanille, chocolat et pistache.',
+              price: '8,5€'
+            },
+            {
+              name: 'Tiramisu',
+              description: 'Une version revisitée du tiramisu classique, remplaçant les boudoirs par un gâteau au chocolat sans gluten trempés dans le Cointreau et du café, avec une crème mascarpone onctueuse.',
+              price: '9,5€'
+            },
+            {
+              name: 'Profiteroles Traditionnelles',
+              description: 'À la vanille Bourbon, servies avec une sauce au chocolat chaud.',
+              price: '9,5€'
+            },
+            {
+              name: 'Coup Belle-Hélène',
+              description: 'Glace vanille, poires et chocolat chaud.',
+              price: '9,5€'
+            },
+            {
+              name: 'Dame Blanche',
+              description: 'Glace vanille, crème fraîche et chocolat chaud.',
+              price: '8,5€'
+            },
+            {
+              name: 'Dame Noire',
+              description: 'Glace chocolat, crème fraîche et chocolat chaud.',
+              price: '8,5€'
+            }
+          ]
+        },
+        {
+          name: 'Crêpes Maison',
+          items: [
+            {
+              name: 'Crêpes Nature',
+              description: 'Saupoudrées de sucre.',
+              price: '5,5€'
+            },
+            {
+              name: 'Crêpes du Chocolatier',
+              description: 'Chocolat chaud et chantilly.',
+              price: '6,5€'
+            },
+            {
+              name: 'Crêpes du Glacier',
+              description: 'Glace vanille, chocolat chaud et chantilly.',
+              price: '8,5€'
+            },
+            {
+              name: 'Crêpes Bell-Hélène',
+              description: 'Poires chaudes, glace vanille, chocolat chaud et chantilly.',
+              price: '9,5€'
+            }
+          ]
+        },
+        {
+          name: 'Gaufres de Liège',
+          items: [
+            {
+              name: 'Gaufre au Sucre',
+              description: 'Gaufre caramélisée.',
+              price: '5€'
+            },
+            {
+              name: 'Gaufre Crème Fraîche',
+              description: 'Servie chaude avec chantilly.',
+              price: '5,5€'
+            },
+            {
+              name: 'Gaufre au Chocolat',
+              description: 'Crème fraîche et chocolat chaud.',
+              price: '6,5€'
+            },
+            {
+              name: 'Gaufre au Glacier',
+              description: 'Glace vanille, crème fraîche et chocolat chaud.',
+              price: '8,5€'
+            }
+          ]
+        },
+        {
+          name: 'Glaces, Sorbets & Formules',
+          items: [
+            {
+              name: 'Sélection de Glaces & Sorbets',
+              description: 'Glace : Vanille, chocolat, moka, pistache, caramel beurre salé. Sorbet : Cassis, fraise, mangue, citron vert.',
+              price: '2€ / boule'
+            },
+            {
+              name: 'Plat du Jour (Midi)',
+              description: 'Découvrez notre plat du jour, disponible du lundi au vendredi, de midi à 18h.',
+              price: '13,5€'
+            },
+            {
+              name: 'Menu Enfant',
+              description: 'Au choix : Crispy Chicken & Frites, Fish & Chips ou Spaghetti Bolognaise.',
+              price: '8,5€'
+            },
+            {
+              name: 'Menu de Noël Gourmand',
+              description: 'Saisonnier. Autour de la fondue suisse et de la raclette.',
+              price: 'Sur Demande'
+            }
+          ]
+        }
+      ]
+    },
+    'vins': {
+      title: 'LA SKOLA',
+      subtitle: 'La Carte des Vins',
+      sections: [
+        {
+          name: 'Rouges',
+          items: [
+            {
+              name: 'Château Margaux 2018',
+              description: 'Grand Cru Classé de Bordeaux. Robe intense, notes florales et boisées, bouche d\'une élégance rare et tanins soyeux.',
+              price: '65€'
+            },
+            {
+              name: 'Chianti Classico Riserva',
+              description: 'Toscane, Italie. Vin rouge de caractère, aux arômes de petits fruits rouges mûrs, de violette et d\'épices, idéal avec des viandes.',
+              price: '38€'
+            },
+            {
+              name: 'Côtes du Rhône Villages',
+              description: 'Vallée du Rhône. Structuré, rond et équilibré, révélant des arômes de fruits des bois et une subtile touche poivrée.',
+              price: '28€'
+            }
+          ]
+        },
+        {
+          name: 'Blancs',
+          items: [
+            {
+              name: 'Chablis Premier Cru',
+              description: 'Bourgogne. Vin blanc d\'exception, minéralité tendue, arômes d\'agrumes et de silex avec une longue finale rafraîchissante.',
+              price: '42€'
+            },
+            {
+              name: 'Sancerre Loire',
+              description: 'Vallée de la Loire. Sauvignon blanc typique, arômes d\'agrumes et de fleurs blanches avec une belle vivacité fruitée.',
+              price: '32€'
+            },
+            {
+              name: 'Riesling Grand Cru',
+              description: 'Alsace. Sec, racé, avec un nez expressif de citron vert et de fruits mûrs, très élégant et équilibré en bouche.',
+              price: '35€'
+            }
+          ]
+        },
+        {
+          name: 'Bulles',
+          items: [
+            {
+              name: 'Champagne Brut Réserve',
+              description: 'Robe dorée, nez fruité et brioché, bulles d\'une grande finesse apportant fraîcheur et délicatesse.',
+              price: '55€'
+            },
+            {
+              name: 'Prosecco di Valdobbiadene',
+              description: 'Vénétie, Italie. Léger, pétillant et fruité, révélant des notes de poire et de pêche blanche, parfait pour l\'apéritif.',
+              price: '28€'
+            }
+          ]
+        }
+      ]
+    }
   };
 
-  const menuModalPages = document.getElementById('menuModalPages');
+  // Helper to render HTML menu structure matching premiere-page-menu.jpeg cover style
+  function renderHTMLMenu(menuType) {
+    const data = menuData[menuType];
+    if (!data) return '';
+
+    let sectionsHtml = '';
+    data.sections.forEach(section => {
+      let itemsHtml = '';
+      section.items.forEach(item => {
+        itemsHtml += `
+          <div class="skola-menu-item">
+            <div class="skola-menu-item-header">
+              <span class="skola-menu-item-name">${item.name}</span>
+              <span class="skola-menu-item-spacer"></span>
+              <span class="skola-menu-item-price">${item.price}</span>
+            </div>
+            ${item.description ? `<p class="skola-menu-item-desc">${item.description}</p>` : ''}
+          </div>
+        `;
+      });
+
+      sectionsHtml += `
+        <div class="skola-menu-section">
+          <h3 class="skola-menu-section-title">${section.name}</h3>
+          <div class="skola-menu-section-divider"></div>
+          <div class="skola-menu-section-items">
+            ${itemsHtml}
+          </div>
+        </div>
+      `;
+    });
+
+    return `
+      <div class="skola-menu-wrapper">
+        <!-- Deco borders & Art-deco corners -->
+        <div class="skola-menu-inner-border"></div>
+        <div class="skola-menu-corner skola-menu-corner-tl"></div>
+        <div class="skola-menu-corner skola-menu-corner-tr"></div>
+        <div class="skola-menu-corner skola-menu-corner-bl"></div>
+        <div class="skola-menu-corner skola-menu-corner-br"></div>
+
+        <!-- Menu Header -->
+        <div class="skola-menu-header">
+          <h2 class="skola-menu-title">${data.title}</h2>
+          <p class="skola-menu-subtitle">— ${data.subtitle.toUpperCase()} —</p>
+          <div class="skola-menu-header-ornament"></div>
+        </div>
+
+        <!-- Menu Grid Layout -->
+        <div class="skola-menu-grid">
+          ${sectionsHtml}
+        </div>
+      </div>
+    `;
+  }
 
   menuCards.forEach(card => {
     card.addEventListener('click', () => {
       const menuType = card.dataset.menu;
-      const images = menuImages[menuType] || ['la_skola_menu_v7.webp'];
-      // Clear previous pages
+      const menuModalContent = menuModal?.querySelector('.menu-modal-content');
+      
       if (menuModalPages) {
         menuModalPages.innerHTML = '';
-        images.forEach(src => {
+        
+        if (menuData[menuType]) {
+          // Add custom class for premium HTML layout and inject content
+          menuModalContent?.classList.add('has-html-menu');
+          menuModalPages.innerHTML = renderHTMLMenu(menuType);
+        } else {
+          // Fallback to images (if needed)
+          menuModalContent?.classList.remove('has-html-menu');
           const img = document.createElement('img');
-          img.src = src;
+          img.src = 'img/cartes-plats.webp';
           img.alt = 'Menu La Skola';
-          img.loading = 'lazy';
           menuModalPages.appendChild(img);
-        });
+        }
       }
       menuModal?.classList.add('active');
       document.body.style.overflow = 'hidden';

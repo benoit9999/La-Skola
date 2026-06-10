@@ -122,8 +122,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* --- Scroll Reveal Animations --- */
 .reveal {
   opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.9s var(--transition-smooth), transform 0.9s var(--transition-smooth);
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--transition-smooth), transform 0.6s var(--transition-smooth);
 }
 .reveal.visible {
   opacity: 1;
@@ -131,8 +131,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .reveal-left {
   opacity: 0;
-  transform: translateX(-60px);
-  transition: opacity 0.9s var(--transition-smooth), transform 0.9s var(--transition-smooth);
+  transform: translateX(-40px);
+  transition: opacity 0.6s var(--transition-smooth), transform 0.6s var(--transition-smooth);
 }
 .reveal-left.visible {
   opacity: 1;
@@ -140,8 +140,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .reveal-right {
   opacity: 0;
-  transform: translateX(60px);
-  transition: opacity 0.9s var(--transition-smooth), transform 0.9s var(--transition-smooth);
+  transform: translateX(40px);
+  transition: opacity 0.6s var(--transition-smooth), transform 0.6s var(--transition-smooth);
 }
 .reveal-right.visible {
   opacity: 1;
@@ -149,8 +149,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .reveal-scale {
   opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.9s var(--transition-smooth), transform 0.9s var(--transition-smooth);
+  transform: scale(0.92);
+  transition: opacity 0.6s var(--transition-smooth), transform 0.6s var(--transition-smooth);
 }
 .reveal-scale.visible {
   opacity: 1;
@@ -1032,6 +1032,36 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 0.8rem;
   color: rgba(255,255,255,0.4);
 }
+.footer-bottom p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.6rem;
+  margin: 0;
+}
+.neodastes-link {
+  display: inline-flex;
+  align-items: center;
+}
+.neodastes-link a {
+  color: rgba(255, 255, 255, 0.7);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;
+  margin-left: 0.15rem;
+}
+.neodastes-link a:hover {
+  color: var(--color-gold);
+}
+.neodastes-logo {
+  height: 18px;
+  width: auto;
+  vertical-align: middle;
+}
 
 /* --- MOBILE MENU OVERLAY --- */
 .mobile-menu {
@@ -1143,8 +1173,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.2rem;
   grid-auto-flow: dense;
 }
 .gallery-item {
@@ -1191,6 +1221,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   grid-row: span 2;
 }
 @media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.8rem;
+  }
   .gallery-item.large {
     grid-column: span 1;
     grid-row: span 1;
@@ -1288,3 +1322,156 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     padding: 2rem;
   }
 }
+
+/* --- PREMIUM HTML MENU CARD IN MODAL --- */
+.menu-modal-content.has-html-menu {
+  max-width: 900px;
+  background: #00221a;
+  border: 1.5px solid var(--color-gold);
+  border-radius: 12px;
+  box-sizing: border-box;
+  color: var(--color-white);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  position: relative;
+  width: 95%;
+}
+.skola-menu-wrapper {
+  padding: 3rem 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+.skola-menu-inner-border {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 12px;
+  right: 12px;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 0;
+}
+.skola-menu-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--color-gold);
+  pointer-events: none;
+  z-index: 0;
+}
+.skola-menu-corner-tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+.skola-menu-corner-tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+.skola-menu-corner-bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+.skola-menu-corner-br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+
+.skola-menu-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+.skola-menu-logo {
+  height: 60px;
+  width: auto;
+  margin-bottom: 0.8rem;
+}
+.skola-menu-title {
+  font-family: var(--font-heading);
+  color: var(--color-gold-light);
+  font-size: 2.4rem;
+  letter-spacing: 0.15rem;
+  margin: 0;
+}
+.skola-menu-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 0.25rem;
+  margin: 0.6rem 0 0;
+}
+.skola-menu-header-ornament {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold) 50%, transparent);
+  margin: 1.2rem auto 0;
+}
+
+.skola-menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 3.5rem;
+}
+.skola-menu-section {
+  position: relative;
+}
+.skola-menu-section-title {
+  font-family: var(--font-heading);
+  color: var(--color-gold);
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 0.8rem;
+  letter-spacing: 0.05rem;
+}
+.skola-menu-section-divider {
+  width: 40px;
+  height: 1px;
+  background: rgba(201, 169, 110, 0.4);
+  margin: 0 auto 1.5rem;
+}
+
+.skola-menu-item {
+  margin-bottom: 1.4rem;
+}
+.skola-menu-item-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+.skola-menu-item-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-white);
+  line-height: 1.25;
+}
+.skola-menu-item-spacer {
+  flex-grow: 1;
+  border-bottom: 1px dotted rgba(201, 169, 110, 0.35);
+  position: relative;
+  top: -4px;
+}
+.skola-menu-item-price {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+}
+.skola-menu-item-desc {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0.3rem 0 0;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+@media (max-width: 800px) {
+  .skola-menu-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .menu-modal-content.has-html-menu {
+    padding: 2.5rem 1rem;
+    max-height: 95vh;
+  }
+  .skola-menu-wrapper {
+    padding: 2rem 1rem;
+  }
+  .skola-menu-title {
+    font-size: 2rem;
+  }
+}
+
