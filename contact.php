@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
     
-    // Destinataire (Fictif La Skola + Agence Neodastes pour les tests)
-    $to = "test@laskola-fake.com, neodastes@gmail.com";
+    // Destinataire (E-mail de l'agence + e-mail officiel du restaurant)
+    $to = "neodastes@gmail.com, info@laskola.be";
     
     // Sujet de l'e-mail
     $subject_email = "Nouvelle demande (" . $sujet . ") - " . $prenom . " " . $nom;
@@ -71,13 +71,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
     
-    // L'adresse de l'expéditeur (le site web). 
-    $headers .= "From: Brasserie La Skola <no-reply@laskola-lln.be>" . "\r\n";
+    // L'adresse de l'expéditeur (le site web). Doit correspondre au domaine de l'hébergement pour éviter le spam.
+    $headers .= "From: Brasserie La Skola <no-reply@laskola.be>" . "\r\n";
     // Si on clique sur 'Répondre', ça répondra directement au client
     $headers .= "Reply-To: {$email}" . "\r\n";
     
-    // Envoi de l'e-mail
-    if (mail($to, $subject_email, $email_content, $headers)) {
+    // Envoi de l'e-mail (le 5e paramètre -f force l'expéditeur de l'enveloppe sur les serveurs OVH)
+    if (mail($to, $subject_email, $email_content, $headers, "-f no-reply@laskola.be")) {
         // Redirection vers la page de remerciement si l'envoi a réussi
         header("Location: merci.html");
         exit;
