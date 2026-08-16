@@ -600,7 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const priceObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          animateValue(priceEl, 0, 13.50, 1200);
+          animateValue(priceEl, 0, 14.50, 1200);
           priceObserver.unobserve(entry.target);
         }
       });
